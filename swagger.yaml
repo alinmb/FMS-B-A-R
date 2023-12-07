@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: API French Fighters
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Serveur de staging (test)
+paths:
+  /fighters:
+    get:
+      summary: Récupérer tous les combattants.
+      description: Retourne la liste de tous les fighters.
+      responses:
+        "200":
+          description: La liste des combattants a été récupérée avec succès!
+          content:
+            application/json:
+              example:
+                - id: 1
+                  prenom: John
+                  nom: Doe
+                  pseudo: Goodfellas
+                  victoires: 12
+                  defaites: 0
+                  nc: 1
+                  champion: true
+
+        "500":
+          description: Erreur interne du serveur
+    post:
+      summary: Créer un nouveau combattant
+      description: Crée un nouveau combattant avec les détails fournis.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prenom:
+                  type: string
+                  description: Prénom du combattant
+                nom:
+                  type: string
+                  description: Nom du combattant
+                pseudo:
+                  type: string
+                  description: Pseudo du combattant
+                age:
+                  type: integer
+                  description: Âge du combattant
+                victoires:
+                  type: integer
+                  description: Nombre de victoires du combattant
+                defaites:
+                  type: integer
+                  description: Nombre de défaites du combattant
+                nc:
+                  type: integer
+                  description: Nombre de matchs non conclus (no contest) du combattant
+                imgSrc:
+                  type: string
+                  description: URL de l'image du combattant
+                champion:
+                  type: boolean
+                  description: Indique si le combattant est un champion
+      responses:
+        "201":
+          description: Création réussie
+          content:
+            application/json:
+              example:
+                id: 3
+                prenom: Nouveau
+                nom: Combattant
+                pseudo: NouveauCombattant
+                age: 25
+                victoires: 0
+                defaites: 0
+                nc: 0
+                imgSrc: "https://example.com/nouveau_combattant.jpg"
+                champion: false
+        "400":
+          description: Requête invalide
+          content:
+            application/json:
+              example:
+                message: "Les données du combattant sont invalides"
