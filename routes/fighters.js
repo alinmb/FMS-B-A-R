@@ -66,6 +66,9 @@ router.patch("/:id", getFighter, async (req, res) => {
   if (req.body.class != null) {
     res.fighter.class = req.body.class;
   }
+  if (req.body.organisation != null) {
+    res.fighter.organisation = req.body.organisation;
+  }
 
   try {
     const updatedFighter = await res.fighter.save();

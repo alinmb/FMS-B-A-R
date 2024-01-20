@@ -12,7 +12,7 @@ const fighterSchema = new mongoose.Schema({
   class: { type: String, required: true },
   club: { type: String, required: true },
   instagram: { type: String, required: true },
-  histoire: { type: String, required: true },
+  organisation: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Fighter", fighterSchema);
